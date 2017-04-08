@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.neu.refugeeapp.bean.LegalDocument;
 import com.neu.refugeeapp.bean.TravelPlan;
 import com.neu.refugeeapp.dao.ConnectionDao;
 
@@ -37,11 +39,35 @@ public class RefugeeUserController {
 	 */
 	
 	@RequestMapping(value ="/", method = RequestMethod.GET)
-	public String index(Locale locale) {
+	public String index(Locale locale, Model model,HttpServletRequest req) {
+		ConnectionDao connectionDao = ConnectionDao.getConnectionDao();
+		Random random = new Random();
+		int randomNumber = random.nextInt(10 - 1) + 1;
+		int randomNumber1 = random.nextInt(110 - 100) + 100;
+		int randomNumber2 = random.nextInt(310 - 300) + 300;
+		
+		List<LegalDocument> docs = ConnectionDao.getDocs(ConnectionDao.getConnection(), new Long(randomNumber),new Long( randomNumber+5));
+		List<LegalDocument> docs1 = ConnectionDao.getDocs(ConnectionDao.getConnection(), new Long(randomNumber1),new Long( randomNumber1+5));
+		List<LegalDocument> docs2 = ConnectionDao.getDocs(ConnectionDao.getConnection(), new Long(randomNumber2),new Long( randomNumber2+5));
+		model.addAttribute("docs",docs);
+		model.addAttribute("docs1",docs1);
+		model.addAttribute("docs2",docs2);
 		return "home";
 	}
 	@RequestMapping(value ="/home", method = RequestMethod.GET)
-	public String home(Locale locale) {
+	public String home(Locale locale, Model model,HttpServletRequest req) {
+		ConnectionDao connectionDao = ConnectionDao.getConnectionDao();
+		Random random = new Random();
+		int randomNumber = random.nextInt(10 - 1) + 1;
+		int randomNumber1 = random.nextInt(110 - 100) + 100;
+		int randomNumber2 = random.nextInt(310 - 300) + 300;
+		
+		List<LegalDocument> docs = ConnectionDao.getDocs(ConnectionDao.getConnection(), new Long(randomNumber),new Long( randomNumber+5));
+		List<LegalDocument> docs1 = ConnectionDao.getDocs(ConnectionDao.getConnection(), new Long(randomNumber1),new Long( randomNumber1+5));
+		List<LegalDocument> docs2 = ConnectionDao.getDocs(ConnectionDao.getConnection(), new Long(randomNumber2),new Long( randomNumber2+5));
+		model.addAttribute("docs",docs);
+		model.addAttribute("docs1",docs1);
+		model.addAttribute("docs2",docs2);
 		return "home";
 	}
 	
@@ -53,11 +79,11 @@ public class RefugeeUserController {
 	@RequestMapping(value = "/jobportal", method = RequestMethod.GET)
 	public String jobportal(Locale locale, Model model) {
 		logger.info("reviewexpierience", locale);
-		return "learning";
+		return "jobportal";
 	}
 	@RequestMapping(value = "/generalinfo", method = RequestMethod.GET)
 	public String generalinfo(Locale locale, Model model) {
 		logger.info("reviewexpierience", locale);
-		return "learning";
+		return "generalinfo";
 	}
 }

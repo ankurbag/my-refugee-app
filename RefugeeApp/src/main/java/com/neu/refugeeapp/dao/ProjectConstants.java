@@ -10,7 +10,7 @@ package com.neu.refugeeapp.dao;
 public interface ProjectConstants {
 	// DB Constants
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/traveldb";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/refugeedb";
 	static final String DB_USER = "root";
 	static final String DB_PASS = "root1234";
     

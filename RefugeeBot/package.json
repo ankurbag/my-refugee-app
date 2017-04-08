@@ -1,0 +1,16 @@
+{
+  "name": "refugeebot",
+  "version": "0.0.1",
+  "description": "Refugee FAQ",
+  "main": "webhook.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "request": "^2.81.0"
+  }
+}
